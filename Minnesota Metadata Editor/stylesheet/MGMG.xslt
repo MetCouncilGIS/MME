@@ -11,7 +11,9 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 	Modification for this MME version:
 	Updated Dec 2011 Jim Gonsoski, MDA
-	Updated June 2012 Jon Hoekenga, Matt McGuire and Mark Kotz, Met Council and Zeb Thomas, DNR -->
+	Updated June 2012 Jon Hoekenga, Matt McGuire and Mark Kotz, Met Council and Zeb Thomas, DNR 
+  Updated July 2014 Jim Gonsoski, Met Council
+  -->
 	
 	
 	

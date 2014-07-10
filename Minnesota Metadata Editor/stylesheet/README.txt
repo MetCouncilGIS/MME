@@ -1,27 +1,32 @@
 ArcGIS 10 stylesheets for the Minnesota Geographic Metadata Standard 1.2
 
-Requirements: ArcGIS 10.0 installed and (if Win7) Admin privileges because you will be adding files to the installed ArcGIS program area.
+Requirements: ArcGIS 10.x installed and (if Win7) Admin privileges because you will be adding files to the installed ArcGIS program area.
 
 Description: These stylesheets allow viewing MGMG standard metadata from within ArcCatalog. 
 
 Installation: 
 
-These customized stylesheet files are added to the ArcGIS program installation, normally in C:\Program Files\ArcGIS\Desktop10.0 or if WIndow7 64-bit C:\Program Files (86)\ArcGIS\Desktop 10.0.
+These customized stylesheet files are added to the installed ArcGIS program location:
+> if Windows 7 32-bit 
+      > if ArcGIS 10.x, default program location is C:\Program Files\ArcGIS\Desktop10.x	 
+> if WIndow7 64-bit 
+      > if ArcGIS 10.x, default program location is C:\Program Files (x86)\ArcGIS\Desktop10.x
 
+	  
 1.) ArcGIS_MGMG.xsl
 
 This stylesheet determines how to detect MGMG metadata and format it. It is based on the ESRI stylesheet ArcGIS.xsl.
 
-Copy this file into C:\Program Files\ArcGIS\Desktop 10.0\Metadata\Stylesheets folder.
+Copy this file into <ArcGIS program location>\Metadata\Stylesheets folder.
 
 2.) MGMG.xslt 
 
 This stylesheet formats the MGMG standard metadata into the ArcCatalog Description pane. It is also used by the Minnesota Metadata Editor 1.1.
 
-Copy this file into C:\Program Files\ArcGIS\Desktop 10.0\Metadata\Stylesheets\ArcGIS_Imports folder for use with ArcCatalog.
+Copy this file into <ArcGIS program location>\Metadata\Stylesheets\ArcGIS_Imports folder for use with ArcCatalog.
 
 3.) MGMG Metadata.cfg
-This configuration file ties it all together. Copy this file into C:\Program Files\ArcGIS\Desktop 10.0\Metadata\Config folder.
+This configuration file ties it all together. Copy this file into <ArcGIS program locaiton>\Metadata\Config folder.
 
 Once installed, 'MGMG Metadata' will appear as an additional option in the Customize -> ArcCatalog Options -> Metadata tab -> Metadata Style.
 
