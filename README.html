@@ -8,32 +8,63 @@
 <body>
 <h1>Minnesota Metadata Editor</h1>
 
-<p>MME is a simple editor for GIS metadata files, in XML format, that adhere to the <a href="http://www.mngeo.state.mn.us/committee/standards/mgmg/metadata.htm">Minnesota Geographic Metadata Guidelines (MGMG version 1.2)</a>. </p>
+<p>MME is a DotNet incarnation of a simple editor for GIS metadata XML files that adhere to the <a href="http://www.mngeo.state.mn.us/committee/standards/mgmg/metadata.htm">Minnesota Geographic Metadata Guidelines (MGMG version 1.2)</a>. </p>
 
 <h4>MME Version</h4>
 
 <pre><code>1.1.24
 </code></pre>
 
+<ol>
+<li>Force 'mailing and physical' in addrtype fields for contacts if none provided on these tags:
+<ul>
+<li>10290 idinfo/ptcontac/cntinfo/cntaddr/addrtype</li>
+<li>13250 distinfo/distrib/cntinfo/cntaddr/addrtype</li>
+<li>13450 metainfo/metc/cntinfo/cntaddr/addrtype</li>
+</ul></li>
+<li>XSL template MGMG.xsl
+<ul>
+<li>return the 'HTTP' protocol that was stripped during formatting on output</li>
+<li>allow HTTPS as a URL protocol that HyperLinks</li>
+</ul></li>
+<li>Remove all references to MnGeo</li>
+<li>Change the spatial extent of data field to a text box (from a combo with pull-down list).</li>
+<li>Fix Online linkage field wipe-out when doing a 'refresh from database'</li>
+</ol>
+
+<p>Pending:</p>
+
+<ol>
+<li>New fields / tags for Vertical Datum.</li>
+</ol>
+
 <h1>What it is</h1>
 
 <p>The Minnesota Metadata Editor (MME) is a desktop application that is intended to simplify and expedite the process of developing geospatial metadata.  </p>
 
-<p>The program operates as a standalone application to create, edit and display formatted metadata that adheres to the <a href="http://www.mngeo.state.mn.us/committee/standards/mgmg/metadata.htm">Minnesota Geographic Metadata Guildelines (MGMG version 1.2)</a>, an implementation of the Federal Geographic Data Committee's (FGDC's) Content Standard for Digital Geospatial Metadata (CSDGM).  </p>
+<p>The program operates as a standalone application that helps you create, edit and display formatted metadata that adheres to the <a href="http://www.mngeo.state.mn.us/committee/standards/mgmg/metadata.htm">Minnesota Geographic Metadata Guildelines (MGMG version 1.2)</a>, an implementation of the Federal Geographic Data Committee's (FGDC's) Content Standard for Digital Geospatial Metadata (CSDGM).  </p>
 
 <p>The MME is a customized version of the EPA Metadata Editor (EME) 3.1.1.  For more information on the EPA Metadata Editor, see <a href="https://edg.epa.gov/EME/">https://edg.epa.gov/EME/</a>. </p>
 
-<h3>How you use it</h3>
+<h2>Get it</h2>
 
-<p>It always helps to read the help: http://www.mngeo.state.mn.us/chouse/mme/Minnesota<em>Metadata</em>Editor_Help.pdf.</p>
+<p>Visit the <a href="https://github.com/MetropolitanCouncil/MME">MME GitHub site</a> and click the <strong>Download ZIP</strong> button in the lower right-hand corner to get a copy of the program. It always helps to read the help: http://www.mngeo.state.mn.us/chouse/mme/Minnesota<em>Metadata</em>Editor_Help.pdf.</p>
 
-<h2>Installation</h2>
+<h2>Run it</h2>
 
-<p>MME runs as portable application and needs no installation. Just unzip the contents of the application to any folder on your computer Then open the folder and double-click <strong>Minnesota Metadata Editor.exe</strong> to run it. If you have MS Access installed on your computer, you can launch Access to edit the application database using Tools > Open Database from within the application. </p>
+<p>MME runs as portable application and needs no installation. Just unzip the contents of the application to any folder on your computer. Then open the folder and double-click <strong>Minnesota Metadata Editor.exe</strong> to run it. If you have MS Access installed on your computer, you can launch Access to edit the application database using Tools > Open Database from within the application.</p>
 
-<h4>Setting up the MME Database</h4>
+<h3>Source</h3>
 
-<p>When you first install MME, it can be helpful for your workflows to edit the MME Database to ensure that the defaults for the metadata fields match the needs for your particular region and uses. Please see the help section titled 'Customizing the Metadata Editor Database' for more information on configuring the database with default values to meet your needs. </p>
+<p>The source code for this application available here with no strings attached. It was last compiled with Visual Studio 2012 but should be reasonably compatible with Visual Studio 2010 as well. Most of the <strong>helper</strong> files for spell-checking and old-time XML support are included in the \bin\debug directory.</p>
+
+<h3>Database</h3>
+
+<p>The program uses an MS Access database to store configuration information. </p>
+
+<h3>Structure</h3>
+
+<p>Originally, this program came in three-flavors: 1) an installed version that integrated with ESRI ArcMap, 2) an installed version that was stand-alone, and 3) a portable version that required no installation. Eventually flavors 1 ans 2 were removed in favor of 3 as it created the least number of problems. The program checks for a \portable directory in its path and used this as its database, if found. Otherwise, it expects to the database to be installed under the user's local user path. </p>
 
 </body>
 </html>
