@@ -4,7 +4,7 @@ Minnesota Metadata Editor
 MME is a DotNet incarnation of a simple editor for GIS metadata XML files that adhere to the [Minnesota Geographic Metadata Guidelines (MGMG version 1.2)](http://www.mngeo.state.mn.us/committee/standards/mgmg/metadata.htm). 
 
 ####MME Version
-    1.1.24  July, 2014
+    1.1.24  August, 2014
 
 #### Release Notes
 1. Force 'mailing and physical' in addrtype fields for contacts if none provided on these tags:
@@ -17,11 +17,15 @@ MME is a DotNet incarnation of a simple editor for GIS metadata XML files that a
 3. Remove all references to MnGeo
 4. Change the spatial extent of data field to a text box (from a combo with pull-down list).
 5. Fix Online linkage field wipe-out when doing a 'refresh from database'
+6. Help links from menu and field label link directly to MnGeo Help URL.
+7. Minnesota County Coordinate System now supports 'feet' as well as 'meters' for NAD83 datum.
+8. Extraneous blank rows in database tables removed. This should prevent poeple from setting blank values as default.
 
 Pending:
 
 1. New fields / tags for Vertical Datum.
-2. Links to Help
+2. Lineage imports reported as not working correctly -- still seekly example of this.
+3. Browse Graphic Description to support GeoSpatial Commons -- still needed??
 
     
 
@@ -47,7 +51,9 @@ You should see Microsoft .NET Framework 3.5 listed.  Multiple versions of Micros
 The source code for this application is available at [GitHub MME-Source](https://github.com/MetropolitanCouncil/MME-Source). It was last compiled with Visual Studio 2012 but should be reasonably compatible with Visual Studio 2010 as well. Most of the **helper** files for spell-checking and old-time XML support are included in the \bin\debug directory.
 
 ###Database
-The application is data-driven using a Microsoft Access database, metadata.mdb. You may need to edit this database to assign default values that apply to your particular agency or group. You need Microsoft Access in order to edit the database. Once edited, it can, however, be distributed to other machines that do not have Access installed. The application, itself, does not require Access installed on the local computer in order to run.
+The application is data-driven using a Microsoft Access database, metadata.mdb. You may need to edit this database to assign default values that apply to your particular agency or group. You need Microsoft Access in order to edit the database. Once edited, it can, however, be distributed to other machines that do not have Access installed. The application, itself, does not require Access installed on the local computer in order to run. 
+
+**Please note that Access database projects of the type used in MME are not supported in Microsoft Office 2013 or Office 365.**
 
 
 
