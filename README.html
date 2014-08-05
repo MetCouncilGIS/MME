@@ -15,27 +15,29 @@
 <pre><code>1.2.1
 </code></pre>
 
+<h5>Changes in this version</h5>
+
 <ol>
-<li>Force 'mailing and physical' in addrtype fields for contacts if none provided on these tags:
+<li>Force <em>mailing and physical</em> in addrtype fields for contacts on these tags:
 <ul>
-<li>10290 idinfo/ptcontac/cntinfo/cntaddr/addrtype</li>
-<li>13250 distinfo/distrib/cntinfo/cntaddr/addrtype</li>
-<li>13450 metainfo/metc/cntinfo/cntaddr/addrtype</li>
+<li>idinfo/ptcontac/cntinfo/cntaddr/addrtype</li>
+<li>distinfo/distrib/cntinfo/cntaddr/addrtype</li>
+<li>metainfo/metc/cntinfo/cntaddr/addrtype</li>
 </ul></li>
 <li>XSL template MGMG.xsl
 <ul>
-<li>return the 'HTTP' protocol that was stripped during formatting on output</li>
-<li>allow HTTPS as a URL protocol that HyperLinks</li>
+<li>restore the 'HTTP' protocol to hyperlinks.</li>
+<li>allow HTTPS as a URL protocol for hyperLinks.</li>
 </ul></li>
-<li>Remove all references to MnGeo</li>
-<li>Change the spatial extent of data field to a text box (from a combo with pull-down list).</li>
-<li>Fix Online linkage field wipe-out when doing a 'refresh from database'</li>
-<li>Help links from menu and field label link directly to MnGeo Help URL.</li>
-<li>Minnesota County Coordinate System now supports 'feet' as well as 'meters' for NAD83 datum.</li>
+<li>Remove all references to MnGeo.</li>
+<li>Change the <em>spatial extent of data</em> field to a text box (from a combo with pull-down list).</li>
+<li>Fix Online linkage field, publisher text getting erased when doing a <em>refresh from database</em>.</li>
+<li>All help now links directly to MnGeo Help Web site.</li>
+<li>Minnesota County Coordinate System now supports <em>feet</em> as well as <em>meters</em> for NAD83 datum.</li>
 <li>Extraneous blank rows in database tables removed. This should prevent poeple from setting blank values as default.</li>
-<li>Add check for database version and fail to load if the wrong database is used - link user to a help page.
-10 Add fields: Vertical Datum, vertical Units, depth datum, depth units, browse graphic description</li>
-<li>Clean out tables from database   </li>
+<li>Add check for database version and fail to load if the wrong database is used - link user to a help page.</li>
+<li>Add fields: Vertical Datum, vertical Units, depth datum, depth units, browse graphic description.</li>
+<li>Modify fields: Publication Date, Progress of data, Update Frequency to pull-down lists + text entry. </li>
 </ol>
 
 <h1>What it is</h1>
@@ -48,25 +50,107 @@
 
 <h2>Get it</h2>
 
-<p>Visit the <a href="https://github.com/MetropolitanCouncil/MME">MME GitHub site</a> and click the <strong>Download ZIP</strong> button in the lower right-hand corner to get a copy of the program. It always helps to read the help: http://www.mngeo.state.mn.us/chouse/mme/Minnesota<em>Metadata</em>Editor_Help.pdf.</p>
+<p>Click the <strong>Download ZIP</strong> button in the lower right-hand corner to get a copy of the program. It might help to <a href="http://www.mngeo.state.mn.us/chouse/mme/help">read the help</a>.</p>
 
 <h2>Run it</h2>
 
-<p>MME runs as portable application and needs no installation. Just unzip the contents of the application to any folder on your computer. Then open the folder and double-click <strong>Minnesota Metadata Editor.exe</strong> to run it. </p>
+<p>MME runs as portable application and needs no installation. Just unzip the contents of the application to any folder on your computer (We suggest <strong>Minnesota Metadata Editor</strong> as the folder name). Then open the folder and double-click <strong>MetadataEditor.exe</strong> to run the editor. </p>
 
 <p>Microsoft .NET Framework 3.5 must be installed on your machine.You can determine if the .NET Framework is on your machine by going to Start->Control Panel->Add or Remove Programs. 
 You should see Microsoft .NET Framework 3.5 listed.  Multiple versions of Microsoft .Net Framework (e.g., 1,2,3) may exist on your machine simultaneously. Microsoft's .NET Framework 3.5 is freely available and can be accessed from <a href="http://www.microsoft.com/download/en/details.aspx?displaylang=en&amp;id=21">Microsoft's website</a>.</p>
 
-<h3>Source</h3>
+<h2>Source</h2>
 
-<p>The source code for this application available here with no strings attached. It was last compiled with Visual Studio 2012 but should be reasonably compatible with Visual Studio 2010 as well. Most of the <strong>helper</strong> files for spell-checking and old-time XML support are included in the \bin\debug directory.</p>
+<p>The source code for this application are available <a href="https://github.com/MetropolitanCouncil/MME-source">here</a> with no strings attached. It was last compiled with Visual Studio 2012 but should be reasonably compatible with Visual Studio 2010 if you create a new solution. Most of the <strong>helper</strong> files for spell-checking and old-time XML support are included in the \bin\debug directory.</p>
 
-<h3>Database</h3>
+<h2>Database</h2>
 
-<p>The application is data-driven using a Microsoft Access database, metadata.mdb. You may need to edit this database to assign default values that apply to your particular agency or group. You need Microsoft Access in order to edit the database. Once edited, it can, however, be distributed to other machines that do not have Access installed. The application, itself, does not require Access installed on the local computer in order to run.</p>
+<p>The application is data-driven using a Microsoft Access database -- metadata.mdb -- stored in the application <strong>\portable</strong> folder. You may store some field values in this database to assign default values that apply to your particular agency or group. You need Microsoft Access in order to edit the database. Once edited, it can, however, be distributed to other machines that do not have Access installed. The application, itself, does not require Access installed on the local computer in order to run.</p>
 
-<h3>Structure</h3>
+<h3>Required User-configurable Database Values</h3>
 
-<p>Originally, this program came in three-flavors: 1) an installed version that integrated with ESRI ArcMap, 2) an installed version that was stand-alone, and 3) a portable version that required no installation. Eventually flavors 1 ans 2 were removed in favor of 3 as it created the least number of problems. The program checks for a \portable directory in its path and used this as its database, if found. Otherwise, it expects to the database to be installed under the user's local path in the folder \Minnesota Metadata Editor. </p>
+<p>Contact information needs to be entered in the database table: <strong>Contact_Information</strong>. You can store any number of name and addresses in the table. Within the application, the contact information will appear in the form of pull-down lists for each of these fields:</p>
+
+<ul>
+<li>data set contact Tab 1 </li>
+<li>distribution contact Tab 3</li>
+<li>metadata contact Tab 3</li>
+</ul>
+
+<h3>Optional User-Configurable Database Values</h3>
+
+<h4>Citation</h4>
+
+<blockquote>
+  <p>Access table: 1a_Citation
+  Tab 1 Basic Data Set Information
+  Area: Citation
+  Field: Origin</p>
+  
+  <p>Enter a value into the database table and check the default value flag. Pressing 'D' in the application will populate the field with the database value.</p>
+</blockquote>
+
+<h4>Publisher</h4>
+
+<blockquote>
+  <p>Access table: 1b_Publisher
+  Tab 1 Basic Data Set Information 
+  Area: Citation
+  Field: Published By</p>
+  
+  <p>Enter one or more values into the database table and optionally set one of the value as the Default. All the values will appear in the Pull-down list for publisher and the default value will populate if the 'D' button is pressed.</p>
+</blockquote>
+
+<h4>Bounding Box</h4>
+
+<blockquote>
+  <p>Access table: 1g_BoundingBox</p>
+  
+  <p>One value is provided for a Minnesota state bounding box and set as the default. You may edit this one or add your own. All values will appear in the Pull-dowm list for Bounding Box and the default value will populate if the 'D' button is pressed.</p>
+</blockquote>
+
+<h4>Constraints</h4>
+
+<blockquote>
+  <p>Access table: 1k_Constraints </p>
+  
+  <p>Tab 1 Basic Data Set Information
+  Area: Data Set Constraints
+  Field: Access (database column <em>accconst</em>)
+  Field: Use (database column <em>useconst</em>)</p>
+  
+  <p>You can establish multiple values in this table and then must designate one of set of values as the default. These values will populate their respective fields when the 'D' button is pressed.</p>
+</blockquote>
+
+<h4>Distribution Liability</h4>
+
+<blockquote>
+  <p>Access table: 3b_DistributionLiability</p>
+  
+  <p>Tab 3 Distribution and Metadata Information
+  Field: Distribution Liability (database column <em>distliab</em>)</p>
+</blockquote>
+
+<h4>OnLine Linkage</h4>
+
+<blockquote>
+  <p>Access table: 3d_OnlineLinkage</p>
+  
+  <p>Tab 3 Distribution and Netadata Information
+  Field: OnLine Linkage</p>
+  
+  <p>You can establish one or value for your online linkage URLs. These value will appear in a pull-down list for the field. No default value is set.</p>
+</blockquote>
+
+<h4>Ordering Instructions</h4>
+
+<blockquote>
+  <p>Access Table: 3e_OrderingInstructions</p>
+  
+  <p>Tab 3 Distribution and Metadata Information
+  Field: Ordering Instructions</p>
+  
+  <p>You can estalish one or more values in the database table and designate one of these as the default to appear when the 'D' button is pressed.</p>
+</blockquote>
 </body>
 </html>
