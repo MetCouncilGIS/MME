@@ -17,18 +17,25 @@ MME is a DotNet incarnation of a simple editor for GIS metadata XML files that a
 3. Remove all references to MnGeo.
 4. Change the *spatial extent of data* field to a text box (from a combo with pull-down list).
 5. Fix Online linkage field, publisher text getting erased when doing a *refresh from database*.
-6. All help now links directly to MnGeo Help Web site.
+6. All help now links directly to a Web site at MnGeo.
 7. Minnesota County Coordinate System now supports *feet* as well as *meters* for NAD83 datum.
 8. Extraneous blank rows in database tables removed. This should prevent poeple from setting blank values as default.
 9. Add check for database version and fail to load if the wrong database is used - link user to a help page.
 10. Add fields: Vertical Datum, vertical Units, depth datum, depth units, browse graphic description.
-11. Modify fields: Publication Date, Progress of data, Update Frequency to pull-down lists + text entry. 
+11. Modify fields: Publication Date, Progress of data, Update Frequency to pull-down lists + text entry.
+12. To avoid confusion, the *address2* field in the database table for *Contact_Information* was removed as it is not a supported element in MGMG2.
+
+#####Upgrading from a prior version
+This version of MME makes several changes to database structures and is not backward-compatible with earlier database formats. During start-up the application checks to determine if the database is in the correct format and will not proceed with an earlier version. 
+
+Install the new version in a new location and then edit the new database as needed to provide the default values for your configuration. Look further on in this document for more detailed instructions on  user-configurable values in MME and how to set them.
+
 
 What it is
 ==========
-The Minnesota Metadata Editor (MME) is a desktop application that is intended to simplify and expedite the process of developing geospatial metadata.  
+The Minnesota Metadata Editor (MME) is a desktop application to create geospatial metadata files. 
 
-The program operates as a standalone application that helps you create, edit and display formatted metadata that adheres to the [Minnesota Geographic Metadata Guildelines (MGMG version 1.2)](http://www.mngeo.state.mn.us/committee/standards/mgmg/metadata.htm), an implementation of the Federal Geographic Data Committee's (FGDC's) Content Standard for Digital Geospatial Metadata (CSDGM).  
+The program operates as a standalone application that allows you create, edit and display formatted metadata that adheres to the [Minnesota Geographic Metadata Guildelines (MGMG version 1.2)](http://www.mngeo.state.mn.us/committee/standards/mgmg/metadata.htm), an implementation of the Federal Geographic Data Committee's (FGDC's) Content Standard for Digital Geospatial Metadata (CSDGM).  
 
 The MME is a customized version of the EPA Metadata Editor (EME) 3.1.1.  For more information on the EPA Metadata Editor, see [https://edg.epa.gov/EME/](https://edg.epa.gov/EME/). 
 
