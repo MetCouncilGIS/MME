@@ -43,13 +43,13 @@ Microsoft .NET Framework 3.5 must be installed on your machine.You can determine
 You should see Microsoft .NET Framework 3.5 listed.  Multiple versions of Microsoft .Net Framework (e.g., 1,2,3) may exist on your machine simultaneously. Microsoft's .NET Framework 3.5 is freely available and can be accessed from [Microsoft's website](http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=21).
 
 ##Source
-The source code for this application are available [here](https://github.com/MetropolitanCouncil/MME-source) with no strings attached. It was last compiled with Visual Studio 2012 but should be reasonably compatible with Visual Studio 2010 if you create a new solution. Most of the **helper** files for spell-checking and old-time XML support are included in the \bin\debug directory.
+The source for this application is available [here](https://github.com/MetropolitanCouncil/MME-source). It was last compiled with Visual Studio 2012 but should be reasonably compatible with Visual Studio 2010 if you create a new solution.
 
 ##Database
 The application is data-driven using a Microsoft Access database -- metadata.mdb -- stored in the application **\portable** folder. You may store some field values in this database to assign default values that apply to your particular agency or group. You need Microsoft Access in order to edit the database. Once edited, it can, however, be distributed to other machines that do not have Access installed. The application, itself, does not require Access installed on the local computer in order to run.
 
 ###Required User-configurable Database Values 
-Contact information needs to be entered in the database table: **Contact_Information**. You can store any number of name and addresses in the table. Within the application, the contact information will appear in the form of pull-down lists for each of these fields:
+Contact information needs to be entered in the database table: **Contact_Information** in order for it to appear in your metadata files. You can store any number of contact names and addresses in the table. Within the application, the contact information will appear in the form of pull-down lists for each of these fields:
 
    * data set contact Tab 1 
    * distribution contact Tab 3
@@ -60,56 +60,76 @@ Contact information needs to be entered in the database table: **Contact_Informa
 
 ####Citation
 > Access table: 1a_Citation
+
 > Tab 1 Basic Data Set Information
+
 > Area: Citation
+
 > Field: Origin
 > 
 > Enter a value into the database table and check the default value flag. Pressing 'D' in the application will populate the field with the database value.
 
 ####Publisher
+
 > Access table: 1b_Publisher
-> Tab 1 Basic Data Set Information 
-> Area: Citation
+
+> Tab 1 Basic Data Set Information
+
 > Field: Published By
-> 
-> Enter one or more values into the database table and optionally set one of the value as the Default. All the values will appear in the Pull-down list for publisher and the default value will populate if the 'D' button is pressed.
+
+> You can enter one or more values in this database table and, optionally, set one of the value as the Default. All the values will appear in the Pull-down list for publisher and the default value will populate the field when the 'D' button is pressed.
 
 ####Bounding Box
+
 > Access table: 1g_BoundingBox
-> 
-> One value is provided for a Minnesota state bounding box and set as the default. You may edit this one or add your own. All values will appear in the Pull-dowm list for Bounding Box and the default value will populate if the 'D' button is pressed.
+
+> Tab 1 Basic Data Set Information
+
+> Field: Bounding Box
+ 
+> One value is provided for a Minnesota state bounding box and set as the default. You may edit this one or add your own. All values will appear in the Pull-dowm list for Bounding Box and the default value will populate when the 'D' button is pressed.
 
 ####Constraints
+
 > Access table: 1k_Constraints 
-> 
+
 > Tab 1 Basic Data Set Information
-> Area: Data Set Constraints
+
 > Field: Access (database column *accconst*)
+
 > Field: Use (database column *useconst*)
-> 
-> You can establish multiple values in this table and then must designate one of set of values as the default. These values will populate their respective fields when the 'D' button is pressed.
+
+> You can establish one or more sets of values in this table and then must designate one as the default set. These values will populate their respective fields when the 'D' button is pressed.
 
 ####Distribution Liability
+
 > Access table: 3b_DistributionLiability
-> 
+
 > Tab 3 Distribution and Metadata Information
+
 > Field: Distribution Liability (database column *distliab*)
 
+> You can establish one or more values in the database table and designate one as the default to appear when the 'D' button is pressed.
+
 ####OnLine Linkage
+
 > Access table: 3d_OnlineLinkage
->
-> Tab 3 Distribution and Netadata Information
+
+> Tab 3 Distribution and Metadata Information
+
 > Field: OnLine Linkage
-> 
-> You can establish one or value for your online linkage URLs. These value will appear in a pull-down list for the field. No default value is set.
+
+> You can establish one or more values for your online linkage URLs. These values appear in the pull-down list for the field. No default value is set.
 
 ####Ordering Instructions
+
 > Access Table: 3e_OrderingInstructions
-> 
+
 > Tab 3 Distribution and Metadata Information
+
 > Field: Ordering Instructions
-> 
-> You can estalish one or more values in the database table and designate one of these as the default to appear when the 'D' button is pressed.
+
+> You can establish one or more values in the database table and designate one as the default to appear when the 'D' button is pressed.
 
 
 
