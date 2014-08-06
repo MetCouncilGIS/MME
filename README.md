@@ -74,7 +74,7 @@ Contact information needs to be entered in the database table: **Contact_Informa
 
 > Field: Origin
 > 
-> Enter a value into the database table and check the default value flag. Pressing 'D' in the application will populate the field with the database value.
+> You can establish one or more values in the database table. You MUST designate one as the default to appear when the 'D' button is pressed.
 
 ####Publisher
 
@@ -106,7 +106,7 @@ Contact information needs to be entered in the database table: **Contact_Informa
 
 > Field: Use (database column *useconst*)
 
-> You can establish one or more sets of values in this table and then must designate one as the default set. These values will populate their respective fields when the 'D' button is pressed.
+> You can establish one or more sets of values in this table and then MUST designate one as the default set. These values will populate their respective fields when the 'D' button is pressed.
 
 ####Distribution Liability
 
@@ -116,7 +116,7 @@ Contact information needs to be entered in the database table: **Contact_Informa
 
 > Field: Distribution Liability (database column *distliab*)
 
-> You can establish one or more values in the database table and designate one as the default to appear when the 'D' button is pressed.
+> You can establish one or more values in the database table. You MUST designate one as the default to appear when the 'D' button is pressed.
 
 ####OnLine Linkage
 
@@ -136,7 +136,7 @@ Contact information needs to be entered in the database table: **Contact_Informa
 
 > Field: Ordering Instructions
 
-> You can establish one or more values in the database table and designate one as the default to appear when the 'D' button is pressed.
+> You can establish one or more values in the database table. You MUST designate one as the default to appear when the 'D' button is pressed.
 
 
 

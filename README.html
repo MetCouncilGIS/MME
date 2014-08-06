@@ -32,19 +32,26 @@
 <li>Remove all references to MnGeo.</li>
 <li>Change the <em>spatial extent of data</em> field to a text box (from a combo with pull-down list).</li>
 <li>Fix Online linkage field, publisher text getting erased when doing a <em>refresh from database</em>.</li>
-<li>All help now links directly to MnGeo Help Web site.</li>
+<li>All help now links directly to a Web site at MnGeo.</li>
 <li>Minnesota County Coordinate System now supports <em>feet</em> as well as <em>meters</em> for NAD83 datum.</li>
 <li>Extraneous blank rows in database tables removed. This should prevent poeple from setting blank values as default.</li>
 <li>Add check for database version and fail to load if the wrong database is used - link user to a help page.</li>
 <li>Add fields: Vertical Datum, vertical Units, depth datum, depth units, browse graphic description.</li>
-<li>Modify fields: Publication Date, Progress of data, Update Frequency to pull-down lists + text entry. </li>
+<li>Modify fields: Publication Date, Progress of data, Update Frequency to pull-down lists + text entry.</li>
+<li>To avoid confusion, the <em>address2</em> field in the database table for <em>Contact_Information</em> was removed as it is not a supported element in MGMG2.</li>
 </ol>
+
+<h5>Upgrading from a prior version</h5>
+
+<p>This version of MME makes several changes to database structures and is not backward-compatible with earlier database formats. During start-up the application checks to determine if the database is in the correct format and will not proceed with an earlier version. </p>
+
+<p>Install the new version in a new location and then edit the new database as needed to provide the default values for your configuration. Look further on in this document for more detailed instructions on  user-configurable values in MME and how to set them.</p>
 
 <h1>What it is</h1>
 
-<p>The Minnesota Metadata Editor (MME) is a desktop application that is intended to simplify and expedite the process of developing geospatial metadata.  </p>
+<p>The Minnesota Metadata Editor (MME) is a desktop application to create geospatial metadata files. </p>
 
-<p>The program operates as a standalone application that helps you create, edit and display formatted metadata that adheres to the <a href="http://www.mngeo.state.mn.us/committee/standards/mgmg/metadata.htm">Minnesota Geographic Metadata Guildelines (MGMG version 1.2)</a>, an implementation of the Federal Geographic Data Committee's (FGDC's) Content Standard for Digital Geospatial Metadata (CSDGM).  </p>
+<p>The program operates as a standalone application that allows you create, edit and display formatted metadata that adheres to the <a href="http://www.mngeo.state.mn.us/committee/standards/mgmg/metadata.htm">Minnesota Geographic Metadata Guildelines (MGMG version 1.2)</a>, an implementation of the Federal Geographic Data Committee's (FGDC's) Content Standard for Digital Geospatial Metadata (CSDGM).  </p>
 
 <p>The MME is a customized version of the EPA Metadata Editor (EME) 3.1.1.  For more information on the EPA Metadata Editor, see <a href="https://edg.epa.gov/EME/">https://edg.epa.gov/EME/</a>. </p>
 
@@ -61,8 +68,7 @@ You should see Microsoft .NET Framework 3.5 listed.  Multiple versions of Micros
 
 <h2>Source</h2>
 
-<p>The source for this application is available <a href="https://github.com/MetropolitanCouncil/MME-source">here</a>.
-</p>
+<p>The source for this application is available <a href="https://github.com/MetropolitanCouncil/MME-source">here</a>. It was last compiled with Visual Studio 2012 but should be reasonably compatible with Visual Studio 2010 if you create a new solution.</p>
 
 <h2>Database</h2>
 
@@ -70,7 +76,7 @@ You should see Microsoft .NET Framework 3.5 listed.  Multiple versions of Micros
 
 <h3>Required User-configurable Database Values</h3>
 
-<p>Contact information needs to be entered in the database table: <strong>Contact_Information</strong>. You can store any number of name and addresses in the table. Within the application, the contact information will appear in the form of pull-down lists for each of these fields:</p>
+<p>Contact information needs to be entered in the database table: <strong>Contact_Information</strong> in order for it to appear in your metadata files. You can store any number of contact names and addresses in the table. Within the application, the contact information will appear in the form of pull-down lists for each of these fields:</p>
 
 <ul>
 <li>data set contact Tab 1 </li>
@@ -91,7 +97,7 @@ You should see Microsoft .NET Framework 3.5 listed.  Multiple versions of Micros
   
   <p>Field: Origin</p>
   
-  <p>Enter a value into the database table and check the default value flag. Pressing 'D' in the application will populate the field with the database value.</p>
+  <p>You can establish one or more values in the database table. You MUST designate one as the default to appear when the 'D' button is pressed.</p>
 </blockquote>
 
 <h4>Publisher</h4>
@@ -129,7 +135,7 @@ You should see Microsoft .NET Framework 3.5 listed.  Multiple versions of Micros
   
   <p>Field: Use (database column <em>useconst</em>)</p>
   
-  <p>You can establish one or more sets of values in this table and then must designate one as the default set. These values will populate their respective fields when the 'D' button is pressed.</p>
+  <p>You can establish one or more sets of values in this table and then MUST designate one as the default set. These values will populate their respective fields when the 'D' button is pressed.</p>
 </blockquote>
 
 <h4>Distribution Liability</h4>
@@ -141,7 +147,7 @@ You should see Microsoft .NET Framework 3.5 listed.  Multiple versions of Micros
   
   <p>Field: Distribution Liability (database column <em>distliab</em>)</p>
   
-  <p>You can establish one or more values in the database table and designate one as the default to appear when the 'D' button is pressed.</p>
+  <p>You can establish one or more values in the database table. You MUST designate one as the default to appear when the 'D' button is pressed.</p>
 </blockquote>
 
 <h4>OnLine Linkage</h4>
@@ -165,7 +171,8 @@ You should see Microsoft .NET Framework 3.5 listed.  Multiple versions of Micros
   
   <p>Field: Ordering Instructions</p>
   
-  <p>You can establish one or more values in the database table and designate one as the default to appear when the 'D' button is pressed.</p>
+  <p>You can establish one or more values in the database table. You MUST designate one as the default to appear when the 'D' button is pressed.</p>
 </blockquote>
+
 </body>
 </html>
