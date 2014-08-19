@@ -417,7 +417,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 						</td>
 						<td align="left"  width="80%"  valign="top" colspan="4">
 							<font size="3"/>
-							<xsl:call-template name="ReplaceHTTPLinks">
+							<xsl:call-template name="PreserveLineBreaks">
 								<xsl:with-param name="text" select="metadata/idinfo/descript/supplinf"/>
 							</xsl:call-template>
 						</td>
@@ -551,21 +551,23 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 							<B>  Browse Graphic  </B>
 
 						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
+						<td align="left"  width="80%"  valign="top" colspan="3">
 							<xsl:choose>
 								<xsl:when test="metadata/idinfo/browse/browsen[. != '']">
+                  
 									<xsl:if test="contains(metadata/idinfo/browse/browsen, '://')">
 										<font size="3" />
-										<A href="{metadata/idinfo/browse/browsen}">
-											Click to view a data sample
-										</A>
+										<A href="{metadata/idinfo/browse/browsen}">Click to view a data sample</A>.
 									</xsl:if>
 
 									<xsl:if test="not (contains(metadata/idinfo/browse/browsen, '://'))">
 										<font size="3" />
 										<xsl:value-of select="metadata/idinfo/browse/browsen" />
 									</xsl:if>
-								
+                  <br/>
+                  <font size="3"/>
+                  <xsl:value-of select="metadata/idinfo/browse/browsed" />
+                  							
 								</xsl:when>
 								<xsl:otherwise>
 									<font size="3" /> None available
