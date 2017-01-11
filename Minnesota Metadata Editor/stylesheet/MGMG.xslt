@@ -640,8 +640,6 @@
 				</h2> 
 				<br />
 				
-				<!--TODO: Make the other sections work like Section 4 below - removing table tags and replacing with divs and spans. 
-				*****BE CAREFUL to include xsl: if test tags when included *****-->
 				<!--  Section 4. Spatial Reference Information  -->
 				<h2>
 					<a name="Spatial_Reference_Information" />
@@ -685,6 +683,7 @@
 						</span>
 					</div><br />
 				</xsl:if>
+				<!--Horizontal Datum and Unit Information -->
 				<div class="mgmgel">
 					<span>
 						Horizontal Datum:
@@ -699,6 +698,40 @@
 					</span>
 					<span>
 						<xsl:value-of select="metadata/spref/horizsys/planar/planci/plandu" />
+					</span>
+				</div><br />
+				<!--Vertical Datum and Unit Information -->
+				<div class="mgmgel">
+					<span>
+						Vertical Datum:
+					</span>
+					<span>
+						<xsl:value-of select="metadata/spref/vertdef/altsys/altdatum" />
+					</span>
+				</div><br />
+				<div class="mgmgel">
+					<span>
+						Vertical Units:
+					</span>
+					<span>
+						<xsl:value-of select="metadata/spref/vertdef/altsys/altunits" />
+					</span>
+				</div><br />
+				<!--Depth Datum and Unit Information -->
+				<div class="mgmgel">
+					<span>
+						Depth Datum:
+					</span>
+					<span>
+						<xsl:value-of select="metadata/spref/vertdef/depthsys/depthdn" />
+					</span>
+				</div><br />
+				<div class="mgmgel">
+					<span>
+						Depth Units:
+					</span>
+					<span>
+						<xsl:value-of select="metadata/spref/vertdef/depthsys/depthdu" />
 					</span>
 				</div><br />
 				<xsl:if test="metadata/spref/horizsys/planar/planci/coordrep/absres[. != '']">
