@@ -1,5 +1,5 @@
-<xsl:stylesheet version="1.0"
-xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<?xml-stylesheet type="text/xsl" href="#"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	
 	<!-- An xsl template for displaying geospatial metadata specifically formatted for metadata create
 	with the Minnesota Metadata Editor and using the Minnesota Geographic Metadata Guidelines.
@@ -15,7 +15,8 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	Modification for this MME version:
 	Updated Dec 2011 Jim Gonsoski, MDA
 	Updated June 2012 Jon Hoekenga, Matt McGuire and Mark Kotz, Met Council and Zeb Thomas, DNR 
-  Updated July 2014 Jim Gonsoski, Met Council
+    Updated July 2014 Jim Gonsoski, Met Council
+	Updated January 2017 Mike Dolbow, Mitch Schaps, Sally Wakefield, MnGeo. Overhaul of HTML to better meet accessibility standards.
   -->
 	<xsl:output method="html" encoding="ISO-8859-1" indent="no" standalone="yes" />
 	<xsl:template name="PreserveLineBreaks">
@@ -181,24 +182,127 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	</xsl:template>
 
 	<xsl:template name= "mgmg" match="/">
-		<title> Metadata: 
-		<xsl:value-of select="metadata/idinfo/citation/citeinfo/title"/>
-		</title>		
-		<div class="mgmg">
-			<A name="thetop"/>
+	<html lang="en">
+		<head>
+			<font face= "calibri">			
+				<title> 
+					Metadata: <xsl:value-of select="metadata/idinfo/citation/citeinfo/title"/>
+				</title>
+			</font>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<style type="text/css">
+				body {
+					color: #000020;
+					background-color: #FFFFFF;
+				}
+				h1 {
+				}
+				.center {
+					text-align: center;
+					margin-top: 5px;
+					margin-bottom: 5px;
+				}
+				div.box {
+					margin-left: 1em;
+				}
+				div.hide {
+					display: none;
+				}
+				div.show {
+					display: block;
+				}
+				span.hide {
+					display: none;
+				}
+				span.show {
+					display: inline-block;
+				}
+				.backToTop a {
+					color: #DDDDDD;
+					font-style: italic;
+					font-size: 0.85em;
+					}
+				.head {
+					font-size: 1.3em;
+				}
+				a:link {
+					color: #098EA6;
+					font-weight: normal;
+					text-decoration: none;
+				}
+				a:visited {
+					color: #098EA6;
+					text-decoration: none;
+				}
+				a:link:hover, a:visited:hover {
+					color: #007799;
+					background-color: #C6E6EF;
+				}
+				h2 {
+					background: #dfdbcf;
+					padding: 0px 0px 0px 10px;
+				}
+				h2 a {
+				}
+				h3 {
+				}
+				tr {
+					vertical-align: top;
+					border: 1px solid black;
+				}
+				th {
+					text-align: left;
+					background: #dddddd;
+					vertical-align: bottom;
+				}
+				td {
+					color: black;
+					vertical-align: top;
+					border: 1px solid black;
+				}
+					td.description {
+					background: white;
+				}
+				div.mgmgel {
+					padding: 5px 0px 0px 10px;
+                    display: table;
+					font-size: 1em;
+                }
+                div.mgmgel span:nth-child(1){
+					display: table-cell;
+					width: 30%;
+					font-weight: bold;
+                }
+				@media(min-width:600px){
+					div.mgmgel span:nth-child(1){width: 300px}
+				}
+                div.mgmgel span:nth-child(2){
+					display: table-cell;
+                }
+				.unused {
+					color:787862;
+				}
+				table {
+					margin: 0px 10px 0px 10px;
+					border: 1px solid black;
+					font-size: .9em;
+				}
+				div.smallish {
+					font-size: .8em;
+					color:939393;
+				}
+			</style>
+		</head>
+		<body>
 			<font face= "calibri">
+			<div class="mgmg">
+				<A name="thetop"/>
 				<center>
-					<font size = "6">
-						<B>
-							<BR/>
-							<xsl:value-of select="metadata/idinfo/citation/citeinfo/title"/>
-						</B>
-					</font>
+					<h1>
+						<xsl:value-of select="metadata/idinfo/citation/citeinfo/title"/>
+					</h1>
 				</center>
-				<BR/>
-				<font size = "2" color="939393">
-
-
+				<div class="smallish">
 					<center>
 						This page last updated:
 						<xsl:call-template name="FormatDate">
@@ -210,320 +314,194 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 							<xsl:value-of select="metadata/metainfo/metstdn" />
 						</A>
 					</center>
-				</font> <BR/>
+				</div>
+				<BR/>
 				<HR/>					
 					
-
+				<span>Go to Section:</span> <BR/>
+				<ol>
+				  <li><a href="#Identification_Information">Overview</a></li>
+				  <li><a href="#Data_Quality_Information">Data Quality</a></li>
+				  <li class="unused">Data Organization</li>
+				  <li><a href="#Spatial_Reference_Information">Coordinate System</a></li>
+				  <li><a href="#Entity_and_Attribute_Information">Attributes</a></li>
+				  <li><a href="#Distribution_Information">Distribution</a> - <a href="#ordering"><font color = "#B40404">Get Data</font></a></li>
+				  <li><a href="#Metadata_Reference_Information">Metadata Reference</a></li>
+				</ol>
 				
-
-				<font size = "3" face= "calibri">Go to Section:</font> <BR/>
-				<B>
-					<font size = "3"> 1. </font>
-					<A HREF="#Identification_Information">
-						<font size="3">Overview</font>
-					</A>
-					<BR/>
-
-					<font size = "3"> 2. </font>
-					<A HREF="#Data_Quality_Information">
-						<font size="3">Data Quality</font>
-					</A>
-					<BR/>
-
-				</B>
-				<font size = "3" color="939393">  3. </font>
-				<font size="3" color="939393">Data Organization</font>
-				<BR/>
-				<B>
-
-					<font size = "3">  4. </font>
-					<A HREF="#Spatial_Reference_Information">
-						<font size="3">Coordinate System</font>
-					</A>
-					<BR/>
-
-					<font size = "3">  5. </font>
-					<A HREF="#Entity_and_Attribute_Information">
-						<font size="3">Attributes</font>
-					</A>
-					<BR/>
-
-					<font size = "3"> 6. </font>
-					<A HREF="#Distribution_Information">
-						<font size="3">Distribution</font>
-					</A> - <A HREF="#ordering"><font color = "#B40404">Get Data</font></A>
-					<BR/>
-
-					<font size = "3">  7. </font>
-					<A HREF="#Metadata_Reference_Information">
-						<font size="3">Metadata Reference</font>
-					</A>
-					<BR/>
-					<BR/>
-				</B>
-
-
-
-
-
 				<!-- Section 1: Identification -->
-				<table border="0" cellspacing="0" cellpadding="5" >
-					<tr>
-						<td bgcolor ="#DFDBCF" align="left"  width="20%"  valign="top"> </td>
-						<td bgcolor ="#DFDBCF" align="left"  width="80%"  valign="top"> </td>
-					</tr>
-					<tr>
-						<td bgcolor ="#DFDBCF" align="left"  width="20%"  valign="top">
-							<A NAME="Identification_Information"> </A>
-							<font size="5" color="353518">
-								<b> Section 1</b>
-							</font>
-						</td>
-
-						<td bgcolor ="#DFDBCF" align="left"  width="80%"  valign="top">
-							<font size="5" color="353518">
-								<b> Overview</b>
-							</font>
-						</td>
-					</tr>
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3" />
-
-							<B> Originator </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3" />
-							<xsl:call-template name="ReplaceHTTPLinks">
+				<h2>
+					<A NAME="Identification_Information"> </A>
+					Section 1: Overview
+				</h2>
+				<div class="mgmgel">
+					<span>Originator:</span>
+					<span>
+						<xsl:call-template name="ReplaceHTTPLinks">
 								<xsl:with-param name="text" select="metadata/idinfo/citation/citeinfo/origin"/>
-							</xsl:call-template>
-						</td>
-					</tr>
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3" />
-
-							<B> Title </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3"/>
-							<xsl:call-template name="ReplaceHTTPLinks">
+						</xsl:call-template>
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Title: 
+					</span>
+					<span>
+						<xsl:call-template name="ReplaceHTTPLinks">
 								<xsl:with-param name="text" select="metadata/idinfo/citation/citeinfo/title"/>
-							</xsl:call-template>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3" />
-
-							<B> Abstract </B>
-
-						</td>
-
-						<td valign="baseline" width="80%" colspan="4">
-							<font size="3"/>
-							<xsl:call-template name="PreserveLineBreaks">
+						</xsl:call-template>
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Abstract: 
+					</span>
+					<span>
+						<xsl:call-template name="PreserveLineBreaks">
 								<xsl:with-param name="text" select="metadata/idinfo/descript/abstract"/>
-							</xsl:call-template>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B> Purpose </B>
-
-						</td>
-
-						<td valign="baseline" width="80%" colspan="4">
-							<font size="3"/>
-							<xsl:call-template name="PreserveLineBreaks">
+						</xsl:call-template>
+						<br />
+					</span>
+				</div>	
+				<br />
+				<div class="mgmgel">
+					<span>
+						Purpose: 
+					</span>
+					<span>
+						<xsl:call-template name="PreserveLineBreaks">
 								<xsl:with-param name="text" select="metadata/idinfo/descript/purpose"/>
-							</xsl:call-template>
-						</td>
-
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B> Time Period of Content Date </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3"/>
-							<xsl:call-template name="FormatDate">
+						</xsl:call-template>
+					</span>
+				</div>			
+				<br />
+				<div class="mgmgel">
+					<span>
+						Time Period of Content Date:
+					</span>
+					<span>
+						<xsl:call-template name="FormatDate">
 								<xsl:with-param name="date" select="metadata/idinfo/timeperd/timeinfo/sngdate/caldate"/>
-							</xsl:call-template>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B> Currentness Reference </B>
-
-						</td>
-
-						<td valign="baseline" width="80%" colspan="4">
-							<font size="3"/>
-							<xsl:call-template name="PreserveLineBreaks">
-								<xsl:with-param name="text" select="metadata/idinfo/timeperd/current"/>
-							</xsl:call-template>
-						</td>
-
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B> Progress </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3"/>
-							<xsl:call-template name="ReplaceHTTPLinks">
+						</xsl:call-template>
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Currentness Reference: 
+					</span>
+					<span>
+						<xsl:call-template name="PreserveLineBreaks">
+							<xsl:with-param name="text" select="metadata/idinfo/timeperd/current"/>
+						</xsl:call-template>
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Progress: 
+					</span>
+					<span>
+						<xsl:call-template name="ReplaceHTTPLinks">
 								<xsl:with-param name="text" select="metadata/idinfo/status/progress"/>
-							</xsl:call-template>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B> Maintenance and Update Frequency </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3"/>
-							<xsl:value-of select="metadata/idinfo/status/update" />
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B>  Spatial Extent of Data </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3"/>
-							<xsl:call-template name="PreserveLineBreaks">
+						</xsl:call-template>
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Maintenance and Update Frequency:
+					</span>
+					<span>
+						<xsl:value-of select="metadata/idinfo/status/update" />
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Spatial Extent of Data:  
+					</span>
+					<span>
+						<xsl:call-template name="PreserveLineBreaks">
 								<xsl:with-param name="text" select="metadata/idinfo/descript/supplinf"/>
-							</xsl:call-template>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B> Bounding Coordinates </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3"/>
-							<xsl:value-of select="metadata/idinfo/spdom/bounding/westbc" />
-							<br/>
-							<xsl:value-of select="metadata/idinfo/spdom/bounding/eastbc" />
-							<br/>
-							<xsl:value-of select="metadata/idinfo/spdom/bounding/northbc" />
-							<br/>
-							<xsl:value-of select="metadata/idinfo/spdom/bounding/southbc" />
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B> Place Keywords </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3"/>
-							<xsl:value-of select="metadata/idinfo/keywords/place/placekey" />
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B> Theme Keywords </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3"/>
-							<xsl:value-of select="metadata/idinfo/keywords/theme/themekey" />
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B> Theme Keyword Thesaurus </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3"/>
-							<xsl:call-template name="ReplaceHTTPLinks">
+						</xsl:call-template>
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Bounding Coordinates:  
+					</span>
+					<span>
+						<xsl:value-of select="metadata/idinfo/spdom/bounding/westbc" />
+						<br/>
+						<xsl:value-of select="metadata/idinfo/spdom/bounding/eastbc" />
+						<br/>
+						<xsl:value-of select="metadata/idinfo/spdom/bounding/northbc" />
+						<br/>
+						<xsl:value-of select="metadata/idinfo/spdom/bounding/southbc" />
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Place Keywords:
+					</span>
+					<span>
+						<xsl:value-of select="metadata/idinfo/keywords/place/placekey" />
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Theme Keywords:
+					</span>
+					<span>
+						<xsl:value-of select="metadata/idinfo/keywords/theme/themekey"/>
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Theme Keyword Thesaurus: 
+					</span>
+					<span>
+						<xsl:call-template name="ReplaceHTTPLinks">
 								<xsl:with-param name="text" select="metadata/idinfo/keywords/theme/themekt"/>
-							</xsl:call-template>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B>  Access Constraints </B>
-
-						</td>
-
-						<td valign="baseline" width="80%" colspan="4">
-							<font size="3"/>
-							<xsl:call-template name="PreserveLineBreaks">
+						</xsl:call-template>
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Access Constraints:
+					</span>
+					<span>
+						<xsl:call-template name="PreserveLineBreaks">
 								<xsl:with-param name="text" select="metadata/idinfo/accconst"/>
-							</xsl:call-template>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B>  Use Constraints </B>
-
-						</td>
-
-						<td valign="baseline" width="80%" colspan="4">
-							<font size="3"/>
-							<xsl:call-template name="PreserveLineBreaks">
+						</xsl:call-template>
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Use Constraints:
+					</span>
+					<span>
+						<xsl:call-template name="PreserveLineBreaks">
 								<xsl:with-param name="text" select="metadata/idinfo/useconst"/>
-							</xsl:call-template>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B>  Contact Person Information </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3" /> <xsl:value-of select="metadata/idinfo/ptcontac/cntinfo/cntperp/cntper" />,
+						</xsl:call-template>
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Contact Person Information: 
+					</span>
+					<span>
+						<xsl:value-of select="metadata/idinfo/ptcontac/cntinfo/cntperp/cntper" />,
 							<xsl:value-of select="metadata/idinfo/ptcontac/cntinfo/cntpos" /> <br/>
 							<xsl:value-of select="metadata/idinfo/ptcontac/cntinfo/cntperp/cntorg" /> <br/>
 							<xsl:value-of select="metadata/idinfo/ptcontac/cntinfo/cntaddr/address" /> <br/>
@@ -538,489 +516,281 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 							Email: <A href="mailto:{metadata/idinfo/ptcontac/cntinfo/cntemail}">
 								<xsl:value-of select ="metadata/idinfo/ptcontac/cntinfo/cntemail"/>
 							</A>
-						</td>
-					</tr>
-
-
+					</span>
+				</div>
+				<br />
 					<!--Test for Browse Graphic. If this field is not filled in, the output defaults to 'none available'. 
 			If there is a link, it will hotlink to the record and put in the standard 'Click to view a data sample' language. -->
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3" />
-
-							<B>  Browse Graphic  </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="3">
-							<xsl:choose>
-								<xsl:when test="metadata/idinfo/browse/browsen[. != '']">
-                  
-									<xsl:if test="contains(metadata/idinfo/browse/browsen, '://')">
-										<font size="3" />
-										<A href="{metadata/idinfo/browse/browsen}">Click to view a data sample</A>.
-									</xsl:if>
-
-									<xsl:if test="not (contains(metadata/idinfo/browse/browsen, '://'))">
-										<font size="3" />
-										<xsl:value-of select="metadata/idinfo/browse/browsen" />
-									</xsl:if>
-                  <br/>
-                  <font size="3"/>
-                  <xsl:value-of select="metadata/idinfo/browse/browsed" />
-                  							
-								</xsl:when>
-								<xsl:otherwise>
-									<font size="3" /> None available
-								</xsl:otherwise>
-							</xsl:choose>
-						</td>
-					</tr>
-
-					
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B>  Associated Data Sets </B>
-
-						</td>
-
-						<td valign="baseline" width="80%" colspan="4">
-							<font size="3"/>
-							<xsl:call-template name="PreserveLineBreaks">
-								<xsl:with-param name="text" select="metadata/idinfo/crossref/citeinfo/title"/>
-							</xsl:call-template>
-						</td>
-					</tr>
-
-					<!--  This provides extra white space before the next section heading -->
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="2"/>
-							<br/>
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="2"/>
-						</td>
-					</tr>
-
-
-
-
-					<!--  Section 2. Data Quality Information  -->
-					<tr>
-						<td bgcolor ="#DFDBCF" align="left"  width="20%"  valign="top"> </td>
-						<td bgcolor ="#DFDBCF" align="left"  width="80%"  valign="top"> </td>
-					</tr>
-					<tr>
-						<td bgcolor ="#DFDBCF" align="left"  width="20%"  valign="top">
-							<font size="5" color="353518">
-								<A Name="Data_Quality_Information" />
-								<b> Section 2</b>
-							</font>
-						</td>
-						<td bgcolor ="#DFDBCF" align="left"  width="80%"  valign="top" colspan="2">
-							<font size="5" color="353518">
-								<b> Data Quality</b>
-							</font>
-						</td>
-
-					</tr>
-					
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B> Attribute Accuracy </B>
-
-						</td>
-
-						<td valign="baseline" width="80%" colspan="4">
-							<font size="3"/>
-							<xsl:call-template name="PreserveLineBreaks">
-								<xsl:with-param name="text" select="metadata/dataqual/attracc/attraccr"/>
-							</xsl:call-template>
-						</td>
-
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B>  Logical Consistency  </B>
-
-						</td>
-
-						<td valign="baseline" width="80%" colspan="4">
-							<font size="3"/>
-							<xsl:call-template name="PreserveLineBreaks">
-								<xsl:with-param name="text" select="metadata/dataqual/logic"/>
-							</xsl:call-template>
-						</td>
-
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B>  Completeness </B>
-
-						</td>
-						<td valign="baseline" width="80%" colspan="4">
-							<font size="3" />
-							<xsl:call-template name="PreserveLineBreaks">
-								<xsl:with-param name="text" select="metadata/dataqual/complete"/>
-							</xsl:call-template>
-						</td>
-					</tr>
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B>  Horizontal Positional Accuracy </B>
-
-						</td>
-						<td valign="baseline" width="80%" colspan="4">
-							<font size="3"/>
-							<xsl:call-template name="PreserveLineBreaks">
-								<xsl:with-param name="text" select="metadata/dataqual/posacc/horizpa/horizpar"/>
-							</xsl:call-template>
-						</td>
-					</tr>
+				<div class="mgmgel">
+					<span>
+						Browse Graphic:  
+					</span>
+					<span>
 					<xsl:choose>
-						<xsl:when test="metadata/dataqual/posacc/vertacc/vertaccr[. != '']">
-							<tr>
-								<td align="left"  width="20%"  valign="top">
-									<font size="3"/>
-
-									<B>  Vertical Positional Accuracy </B>
-
-								</td>
-
-								<td valign="baseline" width="80%" colspan="4">
-									<font size="3" />
-									<xsl:call-template name="PreserveLineBreaks">
-										<xsl:with-param name="text" select="metadata/dataqual/posacc/vertacc/vertaccr"/>
-									</xsl:call-template>
-								</td>
-
-							</tr>
+						<xsl:when test="metadata/idinfo/browse/browsen[. != '']">
+							<xsl:if test="contains(metadata/idinfo/browse/browsen, '://')">
+								<A href="{metadata/idinfo/browse/browsen}">Click to view a data sample</A>.
+								<br />
+							</xsl:if>
+							<xsl:if test="not (contains(metadata/idinfo/browse/browsen, '://'))">
+								<xsl:value-of select="metadata/idinfo/browse/browsen" />
+								<br />
+							</xsl:if>
+								<xsl:value-of select="metadata/idinfo/browse/browsed" />
+								<br />
 						</xsl:when>
-						<xsl:otherwise></xsl:otherwise>
+						<xsl:otherwise>
+							None available
+							<br />
+						</xsl:otherwise>
 					</xsl:choose>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B>  Lineage  </B>
-
-						</td>
-
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3"/>
-							<xsl:call-template name="PreserveLineBreaks">
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Associated Data Sets:
+					</span>
+					<span>
+						<xsl:call-template name="PreserveLineBreaks">
+								<xsl:with-param name="text" select="metadata/idinfo/crossref/citeinfo/title"/>
+						</xsl:call-template>
+					</span>
+				</div>
+				<br />
+				
+				<h2>
+					<a name="Data_Quality_Information" />
+					Section 2: Data Quality
+				</h2>
+				<div class="mgmgel">
+					<span>
+						Attribute Accuracy: 
+					</span>
+					<span>
+						<xsl:call-template name="PreserveLineBreaks">
+								<xsl:with-param name="text" select="metadata/dataqual/attracc/attraccr"/>
+						</xsl:call-template>
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Logical Consistency:
+					</span>
+					<span>
+						<xsl:call-template name="PreserveLineBreaks">
+								<xsl:with-param name="text" select="metadata/dataqual/logic"/>
+						</xsl:call-template>
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Completeness:
+					</span>
+					<span>
+						<xsl:call-template name="PreserveLineBreaks">
+								<xsl:with-param name="text" select="metadata/dataqual/complete"/>
+						</xsl:call-template>
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Horizontal Positional Accuracy:
+					</span>
+					<span>
+						<xsl:call-template name="PreserveLineBreaks">
+								<xsl:with-param name="text" select="metadata/dataqual/posacc/horizpa/horizpar"/>
+						</xsl:call-template>
+					</span>
+				</div>
+				<br />
+				<xsl:choose>
+					<xsl:when test="metadata/dataqual/posacc/vertacc/vertaccr[. != '']">
+						<div class="mgmgel">
+							<span>
+								Vertical Positional Accuracy:
+							</span>
+							<span>
+								<xsl:call-template name="PreserveLineBreaks">
+									<xsl:with-param name="text" select="metadata/dataqual/posacc/vertacc/vertaccr"/>
+								</xsl:call-template>
+							</span>
+						</div>
+					</xsl:when>
+					<xsl:otherwise></xsl:otherwise>
+				</xsl:choose><br />
+				<div class="mgmgel">
+					<span>
+						Lineage:
+					</span>
+					<span>
+						<xsl:call-template name="PreserveLineBreaks">
 								<xsl:with-param name="text" select="metadata/dataqual/lineage/procstep/procdesc"/>
-							</xsl:call-template>
-						</td>
-					</tr>
-
-					<!--  This provides extra white space before the next section heading -->
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="2"/>
-							<br/>
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="2"/>
-						</td>
-					</tr>
-
-
-
-
-					<!--  Section 3. Spatial Data Organization -->
-					<tr>
-						<td bgcolor ="#DFDBCF" align="left"  width="20%"  valign="top">  </td>
-						<td bgcolor ="#DFDBCF" align="left"  width="80%"  valign="top"> </td>
-					</tr>
-					<tr>
-						<td bgcolor ="#DFDBCF" align="left"  width="20%"  valign="top">
-							<font size="5" color="787862">
-								<A Name="Spatial_Data_Organization_Information" />
-								Section 3
-							</font>
-						</td>
-						<td bgcolor ="#DFDBCF" align="left"  width="40%"  valign="top" colspan="2">
-							<font size="5" color="787862">
-								Spatial Data Organization (not used in this metadata)
-							</font>
-						</td>
-					</tr>
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-						</td>
-					</tr>
-
-					<!--  This provides extra white space before the next section heading -->
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="2"/>
-							<br/>
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="2"/>
-						</td>
-					</tr>
-
-
-
-
-
-					<!--  Section 4. Spatial Reference Information  -->
-					<tr>
-						<td bgcolor ="#DFDBCF" align="left"  width="20%"  valign="top"> </td>
-						<td bgcolor ="#DFDBCF" align="left"  width="80%"  valign="top"> </td>
-					</tr>
-					<tr>
-						<td bgcolor ="#DFDBCF" align="left"  width="20%"  valign="top">
-							<font size="5" color="353518">
-								<A Name="Spatial_Reference_Information" />
-								<b> Section 4</b>
-							</font>
-						</td>
-						<td bgcolor ="#DFDBCF" align="left"  width="80%"  valign="top" colspan="2">
-							<font size="5" color="353518">
-								<b> Coordinate System</b>
-							</font>
-						</td>
-
-					</tr>
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B>  Horizontal Coordinate Scheme  </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3"/>
-							<xsl:value-of select="metadata/spref/horizsys/planar/gridsys/gridsysn" />
-						</td>
-					</tr>
-
-					<xsl:if test="metadata/spref/horizsys/planar/gridsys/utm/utmzone[. != '']">
-						<tr>
-							<td align="left"  width="20%"  valign="top">
-								<font size="3"/>
-
-								<B>  UTM Zone Number  </B>
-
-							</td>
-							<td align="left"  width="80%"  valign="top" colspan="4">
-								<font size="3"/>
-								<xsl:value-of select="metadata/spref/horizsys/planar/gridsys/utm/utmzone" />
-							</td>
-						</tr>
-					</xsl:if>
-
-
-					<xsl:if test="metadata/spref/horizsys/planar/gridsys/spcs/spcszone[. != '']">
-						<tr>
-							<td align="left"  width="20%"  valign="top">
-								<font size="3"/>
-
-								<B> SPCS Zone Identifier </B>
-
-							</td>
-							<td align="left"  width="80%"  valign="top" colspan="4">
-								<font size="3"/>
-								<xsl:value-of select="metadata/spref/horizsys/planar/gridsys/spcs/spcszone" />
-							</td>
-						</tr>
-					</xsl:if>
-
-					<xsl:if test="metadata/spref/horizsys/planar/gridsys/mgmg4coz[. != '']">
-						<tr>
-							<td align="left"  width="20%"  valign="top">
-								<font size="3"/>
-
-								<B> County Coordinate Zone Identifier </B>
-
-							</td>
-							<td align="left"  width="80%"  valign="top" colspan="4">
-								<font size="3"/>
-								<xsl:value-of select="metadata/spref/horizsys/planar/gridsys/mgmg4coz" />
-							</td>
-						</tr>
-					</xsl:if>
-
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B>  Horizontal Datum  </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3"/>
-							<xsl:value-of select="metadata/spref/horizsys/geodetic/horizdn" />
-						</td>
-					</tr>
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3"/>
-
-							<B> Horizontal Units  </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3" />
-							<xsl:value-of select="metadata/spref/horizsys/planar/planci/plandu" />
-						</td>
-					</tr>
-
-
-					<xsl:if test="metadata/spref/horizsys/planar/planci/coordrep/absres[. != '']">
-						<tr>
-							<td align="left"  width="20%"  valign="top">
-								<font size="3"/>
-
-								<B> Cell Width </B>
-
-							</td>
-							<td align="left"  width="80%"  valign="top" colspan="4">
-								<font size="3"/>
-								<xsl:value-of select="metadata/spref/horizsys/planar/planci/coordrep/absres" />
-							</td>
-						</tr>
-					</xsl:if>
-
-					<xsl:if test="metadata/spref/horizsys/planar/planci/coordrep/ordres[. != '']">
-						<tr>
-							<td align="left"  width="20%"  valign="top">
-								<font size="3"/>
-
-								<B> Cell Height </B>
-
-							</td>
-							<td align="left"  width="80%"  valign="top" colspan="4">
-								<font size="3"/>
-								<xsl:value-of select="metadata/spref/horizsys/planar/planci/coordrep/ordres" />
-							</td>
-						</tr>
-					</xsl:if>
-
-
-					<!--  This provides extra white space before the next section heading -->
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="2"/>
-							<br/>
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="2"/>
-						</td>
-					</tr>
-
-
-
-
-
-
-					<!--   Section 5: Entity and Attribute Information  -->
-					<tr>
-						<td bgcolor ="#DFDBCF" align="left"  width="20%"  valign="top"> </td>
-						<td bgcolor ="#DFDBCF" align="left"  width="80%"  valign="top"> </td>
-					</tr>
-					<tr>
-						<td bgcolor ="#DFDBCF" align="left"  width="20%"  valign="top">
-							<font size="5" color="353518">
-								<A Name="Entity_and_Attribute_Information" />
-								<b> Section 5</b>
-							</font>
-						</td>
-						<td bgcolor ="#DFDBCF" align="left"  width="80%"  valign="top" colspan="2">
-							<font size="5" color="353518">
-								<b> Attributes</b>
-							</font>
-						</td>
-
-					</tr>
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3" />
-
-							<B>  Overview </B>
-
-						</td>
-
-						<td valign="baseline" width="80%" colspan="4">
-							<font size="3" />
-							<xsl:call-template name="PreserveLineBreaks">
-								<xsl:with-param name="text" select="metadata/eainfo/overview/eaover"/>
-							</xsl:call-template>
-						</td>
-
-					</tr>
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3" />
-
-							<B>  Detailed Citation </B>
-
-						</td>
-						<td valign="baseline" width="80%" colspan="4">
-							<font size="3" />
-
-							<xsl:call-template name="PreserveLineBreaks">
-								<xsl:with-param name="text" select="metadata/eainfo/overview/eadetcit"/>
-							</xsl:call-template>
-						</td>
-					</tr>
-					
-					
-					
-					
-					
-					<!-- TABLE DETAILS -->
-					<tr>
-						<td align="left" width="20%" valign="top">
-							<B> Table Detail: </B>
-						</td>
-						<td valign="baseline" width="80%" colspan="4">
-						</td>
-					</tr>
-				</table>
-
-				<!-- Each table is stored within a separate detailed tag -->
+						</xsl:call-template>
+					</span>
+				</div>
+				<br />
+				<!--  Section 3. Spatial Data Organization -->
+				<h2 class="unused">
+					<a name="Spatial_Data_Organization_Information" />
+					Section 3: Spatial Data Organization (not used in this metadata)
+				</h2> 
+				<br />
+				
+				<!--  Section 4. Spatial Reference Information  -->
+				<h2>
+					<a name="Spatial_Reference_Information" />
+					Section 4: Coordinate System
+				</h2> 
+				<div class="mgmgel">
+					<span>
+						Horizontal Coordinate Scheme:
+					</span>
+					<span>
+						<xsl:value-of select="metadata/spref/horizsys/planar/gridsys/gridsysn" />
+					</span>
+				</div><br />
+				<xsl:if test="metadata/spref/horizsys/planar/gridsys/utm/utmzone[. != '']">
+					<div class="mgmgel">
+						<span>
+							UTM Zone Number:
+						</span>
+						<span>
+							<xsl:value-of select="metadata/spref/horizsys/planar/gridsys/utm/utmzone" />
+						</span>
+					</div><br />
+				</xsl:if>
+				<xsl:if test="metadata/spref/horizsys/planar/gridsys/spcs/spcszone[. != '']">
+					<div class="mgmgel">
+						<span>
+							SPCS Zone Identifier:
+						</span>
+						<span>
+							<xsl:value-of select="metadata/spref/horizsys/planar/gridsys/spcs/spcszone" />
+						</span>
+					</div><br />
+				</xsl:if>
+				<xsl:if test="metadata/spref/horizsys/planar/gridsys/mgmg4coz[. != '']">
+					<div class="mgmgel">
+						<span>
+							County Coordinate Zone Identifier:
+						</span>
+						<span>
+							<xsl:value-of select="metadata/spref/horizsys/planar/gridsys/mgmg4coz" />
+						</span>
+					</div><br />
+				</xsl:if>
+				<!--Horizontal Datum and Unit Information -->
+				<div class="mgmgel">
+					<span>
+						Horizontal Datum:
+					</span>
+					<span>
+						<xsl:value-of select="metadata/spref/horizsys/geodetic/horizdn" />
+					</span>
+				</div><br />
+				<div class="mgmgel">
+					<span>
+						Horizontal Units:
+					</span>
+					<span>
+						<xsl:value-of select="metadata/spref/horizsys/planar/planci/plandu" />
+					</span>
+				</div><br />
+				<!--Vertical Datum and Unit Information -->
+				<div class="mgmgel">
+					<span>
+						Vertical Datum:
+					</span>
+					<span>
+						<xsl:value-of select="metadata/spref/vertdef/altsys/altdatum" />
+					</span>
+				</div><br />
+				<div class="mgmgel">
+					<span>
+						Vertical Units:
+					</span>
+					<span>
+						<xsl:value-of select="metadata/spref/vertdef/altsys/altunits" />
+					</span>
+				</div><br />
+				<!--Depth Datum and Unit Information -->
+				<div class="mgmgel">
+					<span>
+						Depth Datum:
+					</span>
+					<span>
+						<xsl:value-of select="metadata/spref/vertdef/depthsys/depthdn" />
+					</span>
+				</div><br />
+				<div class="mgmgel">
+					<span>
+						Depth Units:
+					</span>
+					<span>
+						<xsl:value-of select="metadata/spref/vertdef/depthsys/depthdu" />
+					</span>
+				</div><br />
+				<xsl:if test="metadata/spref/horizsys/planar/planci/coordrep/absres[. != '']">
+					<div class="mgmgel">
+						<span>
+							Cell Width:
+						</span>
+						<span>
+							<xsl:value-of select="metadata/spref/horizsys/planar/planci/coordrep/absres" />
+						</span>
+					</div><br />
+				</xsl:if>
+				<xsl:if test="metadata/spref/horizsys/planar/planci/coordrep/ordres[. != '']">
+					<div class="mgmgel">
+						<span>
+							Cell Height:
+						</span>
+						<span>
+							<xsl:value-of select="metadata/spref/horizsys/planar/planci/coordrep/ordres" />
+						</span>
+					</div><br />
+				</xsl:if>	
+				<h2>
+					<a name="Entity_and_Attribute_Information" />
+					Section 5: Attributes
+				</h2>
+				<div class="mgmgel">
+					<span>
+						Overview:
+					</span>
+					<span>
+						<xsl:call-template name="PreserveLineBreaks">
+							<xsl:with-param name="text" select="metadata/eainfo/overview/eaover"/>
+						</xsl:call-template>
+					</span>
+				</div><br />
+				<div class="mgmgel">
+					<span>
+						Detailed Citation:
+					</span>
+					<span>
+						<xsl:call-template name="PreserveLineBreaks">
+							<xsl:with-param name="text" select="metadata/eainfo/overview/eadetcit"/>
+						</xsl:call-template>
+					</span>
+				</div><br />
+				<div class="mgmgel">
+					<span>
+						Table Detail:
+					</span>
+				</div>
+				<!-- Each table is stored within a separate detailed tag. The table title and description should not be in a table row, however. -->
 				<xsl:for-each select="metadata/eainfo/detailed">
-					<table border="1">
-						<!--<caption>
-                <b><xsl:value-of select="enttyp/enttypl" /></b>
-                <xsl:if test="enttyp/enttypd"> - <xsl:value-of select="enttyp/enttypd" /></xsl:if>
-                <xsl:if test="enttyp/enttypds"> (<xsl:value-of select="enttyp/enttypds" />)</xsl:if>
-              </caption>-->
-						<tr>
-							<td align="center" colspan="4">
-								<b>
-									<xsl:value-of select="enttyp/enttypl"></xsl:value-of>
-								</b>
-								<!-- Table Name -->
-								<xsl:if test="enttyp/enttypd">
-									- <xsl:value-of select="enttyp/enttypd"></xsl:value-of>
-								</xsl:if>
-								<!-- Table Definition -->
-								<xsl:if test="enttyp/enttypds">
-									(<xsl:value-of select="enttyp/enttypds"></xsl:value-of>)
-								</xsl:if>
-								<!-- Table Definition Source -->
-							</td>
-						</tr>
-
+					<table>
+					<caption>
+					<b><xsl:value-of select="enttyp/enttypl" /></b> <!-- Table Name -->
+					<xsl:if test="enttyp/enttypd"> - <xsl:value-of select="enttyp/enttypd" /></xsl:if> <!-- Table Definition -->
+					<xsl:if test="enttyp/enttypds"> (<xsl:value-of select="enttyp/enttypds" />)</xsl:if><!-- Table Definition Source -->
+					</caption>
 						<xsl:if test="attr">
 							<!-- If attributes are included for this table, add them to the table -->
 							<tr>
@@ -1033,14 +803,11 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 							<xsl:for-each select="attr">
 								<tr>
 									<td>
-										<font size="2">
 											<xsl:value-of select="attrlabl"></xsl:value-of>
-										</font>
 									</td>
 									<!-- Field Name -->
 									<td>
 										<!-- Valid Values -->
-										<font size="2">
 											<xsl:choose>
 												<xsl:when test="attrdomv/edom">
 													<i>enumerated</i>
@@ -1052,18 +819,13 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 													<center>-</center>
 												</xsl:otherwise>
 											</xsl:choose>
-										</font>
 									</td>
 									<td>
-										<font size="2">
-											<xsl:value-of select="attrdef"></xsl:value-of>
-										</font>
+										<xsl:value-of select="attrdef"></xsl:value-of>
 									</td>
 									<!-- Definition -->
 									<td>
-										<font size="2">
-											<xsl:value-of select="attrdefs"></xsl:value-of>
-										</font>
+										<xsl:value-of select="attrdefs"></xsl:value-of>
 									</td>
 									<!-- Definition Source -->
 								</tr>
@@ -1072,101 +834,51 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 									<tr>
 										<td></td>
 										<td>
-											<font size="2">
-												<xsl:value-of select="edomv"></xsl:value-of>
-											</font>
+											<xsl:value-of select="edomv"></xsl:value-of>
 										</td>
 										<td>
-											<font size="2">
-												<xsl:value-of select="edomvd"></xsl:value-of>
-											</font>
+											<xsl:value-of select="edomvd"></xsl:value-of>
 										</td>
 										<td>
-											<font size="2">
-												<xsl:value-of select="edomvds"></xsl:value-of>
-											</font>
+											<xsl:value-of select="edomvds"></xsl:value-of>
 										</td>
 									</tr>
 								</xsl:for-each>
 							</xsl:for-each>
 						</xsl:if>
 					</table>
-					<br></br>
 				</xsl:for-each>
-
-				<table border="0" cellspacing="0" cellpadding="5">
-
-
-					<!--  This provides extra white space before the next section heading -->
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="2"/>
-							<br/>
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="2"/>
-						</td>
-					</tr>
-
-
-
-
-					<!--  Section 6. Distribution Information  -->
-					<tr>
-						<td bgcolor ="#DFDBCF" align="left"  width="20%"  valign="top"> </td>
-						<td bgcolor ="#DFDBCF" align="left"  width="80%"  valign="top">  </td>
-					</tr>
-					<tr>
-						<td bgcolor ="#DFDBCF" align="left"  width="20%"  valign="top">
-							<font size="5" color="353518">
-								<A Name="Distribution_Information"></A>
-								<b> Section 6</b>
-							</font>
-						</td>
-						<td bgcolor ="#DFDBCF" align="left"  width="80%"  valign="top" colspan="2">
-							<font size="5" color="353518">
-								<b> Distribution</b>
-							</font>
-						</td>
-
-					</tr>
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3" />
-
-							<B>  Publisher  </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3"/>
-							<xsl:value-of select="metadata/idinfo/citation/citeinfo/pubinfo/publish" />
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3" />
-
-							<B>  Publication Date  </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3"/>
-							<xsl:call-template name="FormatDate">
+				<!--  Section 6. Distribution Information  -->
+				<h2>
+					<a name="Distribution_Information" />
+					Section 6: Distribution
+				</h2>
+				<div class="mgmgel">
+					<span>
+						Publisher:
+					</span>
+					<span>
+						<xsl:value-of select="metadata/idinfo/citation/citeinfo/pubinfo/publish" />
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Publication Date:
+					</span>
+					<span>
+						<xsl:call-template name="FormatDate">
 								<xsl:with-param name="date" select="metadata/idinfo/citation/citeinfo/pubdate"/>
-							</xsl:call-template>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3" />
-
-							<B>  Contact Person Information </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3"/> <xsl:value-of select="metadata/distinfo/distrib/cntinfo/cntperp/cntper" />,
+						</xsl:call-template>
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Contact Person Information:
+					</span>
+					<span>
+							<xsl:value-of select="metadata/distinfo/distrib/cntinfo/cntperp/cntper" />,
 							<xsl:value-of select="metadata/distinfo/distrib/cntinfo/cntpos" /> <br/>
 							<xsl:value-of select="metadata/distinfo/distrib/cntinfo/cntperp/cntorg" /> <br/>
 							<xsl:value-of select="metadata/distinfo/distrib/cntinfo/cntaddr/address" /> <br/>
@@ -1181,229 +893,149 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 							Email: <A href="mailto:{metadata/distinfo/distrib/cntinfo/cntemail}">
 								<xsl:value-of select ="metadata/distinfo/distrib/cntinfo/cntemail"/>
 							</A>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3" />
-
-							<B>  Distributor's Data Set Identifier  </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3"/>
-							<xsl:value-of select="metadata/distinfo/resdesc" />
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3" />
-
-							<B>  Distribution Liability  </B>
-
-						</td>
-
-						<td valign="baseline" width="80%" colspan="4">
-							<font size="3"/>
-							<xsl:call-template name="PreserveLineBreaks">
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Distributor's Data Set Identifier:
+					</span>
+					<span>
+						<xsl:value-of select="metadata/distinfo/resdesc" />
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Distribution Liability:
+					</span>
+					<span>
+						<xsl:call-template name="PreserveLineBreaks">
 								<xsl:with-param name="text" select="metadata/distinfo/distliab"/>
-							</xsl:call-template>
-						</td>
-
-					</tr>
-					
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<A Name="ordering" />
-							<font color="#990000" />
-							<font size="3" />
-
-							<B>  Ordering Instructions  </B>
-
-						</td>
-
-						<td valign="baseline" width="80%" colspan="4">
-							<font size="3"/>
-							<xsl:call-template name="PreserveLineBreaks">
+						</xsl:call-template>
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Ordering Instructions:
+					</span>
+					<span>
+						<xsl:call-template name="PreserveLineBreaks">
 								<xsl:with-param name="text" select="metadata/distinfo/stdorder/ordering"/>
-							</xsl:call-template>
-						</td>
-					</tr>
-
-
-
+						</xsl:call-template>
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						<font color = "#B40404">Online Linkage:</font>
+					</span>
+					<span>
 					<!--Test for online linkage. If this field is not filled in, the output defaults to 'none available'. 
 			            If there is a link, it will hotlink to the record and put in the standard 'I AGREE...' language. -->
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3" />
-
-							<B>
-								<font color = "#B40404">Online Linkage</font>
-							</B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<xsl:choose>
-								<xsl:when test="metadata/idinfo/citation/citeinfo/onlink[. != '']">
-
-
-									<xsl:if test="contains(metadata/idinfo/citation/citeinfo/onlink, '://')">
-										<font size="3" />
+						<xsl:choose>
+							<xsl:when test="metadata/idinfo/citation/citeinfo/onlink[. != '']">
+								<xsl:if test="contains(metadata/idinfo/citation/citeinfo/onlink, '://')">
 										<A href="{metadata/idinfo/citation/citeinfo/onlink}"> I AGREE</A>
-										to the notice in "Distribution Liability" above. Clicking to agree will either begin the download process, link to a service, or provide more instructions. See "Ordering Instructions" above for details.
-									</xsl:if>
-
-									<xsl:if test="not (contains(metadata/idinfo/citation/citeinfo/onlink, '://'))">
-										<font size="3" />
+											to the notice in "Distribution Liability" above. Clicking to agree will either begin the download process, link to a service, or provide more instructions. See "Ordering Instructions" above for details.
+								</xsl:if>
+								<xsl:if test="not (contains(metadata/idinfo/citation/citeinfo/onlink, '://'))">
 										<xsl:value-of select="metadata/idinfo/citation/citeinfo/onlink" />
-									</xsl:if>
-								</xsl:when>
-								<xsl:otherwise>
-									<font size="3" /> None available
-								</xsl:otherwise>
-							</xsl:choose>
-						</td>
-					</tr>
-
-
-
-					<!--  This provides extra white space before the next section heading -->
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="2"/>
-							<br/>
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="2"/>
-						</td>
-					</tr>
-
-
-
-
-					<!--  Section 7. Metadata Information -->
-					<tr>
-						<td bgcolor ="#DFDBCF" align="left"  width="20%"  valign="top">  </td>
-						<td bgcolor ="#DFDBCF" align="left"  width="80%"  valign="top">  </td>
-					</tr>
-					<tr>
-						<td bgcolor ="#DFDBCF" align="left"  width="20%"  valign="top">
-							<font size="5" color="353518">
-								<A Name="Metadata_Reference_Information" />
-								<b> Section 7</b>
-							</font>
-						</td>
-						<td bgcolor ="#DFDBCF" align="left"  width="80%"  valign="top" colspan="2">
-							<font size="5" color="353518">
-								<b> Metadata Reference</b>
-							</font>
-							<font size="3" />
-						</td>
-
-					</tr>
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3" />
-
-							<B>  Metadata Date  </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3"/>
-							<xsl:call-template name="FormatDate">
+								</xsl:if>
+							</xsl:when>
+							<xsl:otherwise>
+								None available
+							</xsl:otherwise>
+						</xsl:choose>
+					</span>
+				</div>
+				<br />
+				<!--  Section 7. Metadata Information -->
+				<h2>
+					<a name="Metadata_Reference_Information" />
+					Section 7: Metadata Reference
+				</h2>
+				<div class="mgmgel">
+					<span>
+						Metadata Date:
+					</span>
+					<span>
+						<xsl:call-template name="FormatDate">
 								<xsl:with-param name="date" select="metadata/metainfo/metd"/>
-							</xsl:call-template>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3" />
-
-							<B>  Contact Person Information </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3"/> <xsl:value-of select="metadata/metainfo/metc/cntinfo/cntperp/cntper" />,
-							<xsl:value-of select="metadata/metainfo/metc/cntinfo/cntpos" /> <br/>
-							<xsl:value-of select="metadata/metainfo/metc/cntinfo/cntperp/cntorg" /> <br/>
-							<xsl:value-of select="metadata/metainfo/metc/cntinfo/cntaddr/address" /> <br/>
-							<xsl:value-of select="metadata/metainfo/metc/cntinfo/cntaddr/city" />,
-							<xsl:value-of select="metadata/metainfo/metc/cntinfo/cntaddr/state" />
-							<xsl:text disable-output-escaping="yes">&amp;</xsl:text>nbsp;
-							<xsl:value-of select="metadata/metainfo/metc/cntinfo/cntaddr/postal" /> <br/>
-							Phone: <xsl:value-of select="metadata/metainfo/metc/cntinfo/cntvoice" /> <br/>
-							<xsl:if test="metadata/metainfo/metc/cntinfo/cntfax[. != '']">
-								Fax: <xsl:value-of select="metadata/metainfo/metc/cntinfo/cntfax" /> <br/>
-							</xsl:if>
-							Email: <A href="mailto:{metadata/metainfo/metc/cntinfo/cntemail}">
-								<xsl:value-of select="metadata/metainfo/metc/cntinfo/cntemail"/>
-							</A>
-						</td>
-					</tr>
-
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3" />
-
-							<B>  Metadata Standard Name  </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3"/>
-							<xsl:value-of select="metadata/metainfo/metstdn" />
-						</td>
-					</tr>
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3" />
-
-							<B>  Metadata Standard Version  </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3"/>
-							<xsl:value-of select="metadata/metainfo/metstdv" />
-						</td>
-					</tr>
-					<tr>
-						<td align="left"  width="20%"  valign="top">
-							<font size="3" />
-
-							<B>  Metadata Standard Online Linkage  </B>
-
-						</td>
-						<td align="left"  width="80%"  valign="top" colspan="4">
-							<font size="3" />
-							<A TARGET="viewer">
+						</xsl:call-template>
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Contact Person Information:
+					</span>
+					<span>
+						<xsl:value-of select="metadata/metainfo/metc/cntinfo/cntperp/cntper" />,
+						<xsl:value-of select="metadata/metainfo/metc/cntinfo/cntpos" /> <br/>
+						<xsl:value-of select="metadata/metainfo/metc/cntinfo/cntperp/cntorg" /> <br/>
+						<xsl:value-of select="metadata/metainfo/metc/cntinfo/cntaddr/address" /> <br/>
+						<xsl:value-of select="metadata/metainfo/metc/cntinfo/cntaddr/city" />,
+						<xsl:value-of select="metadata/metainfo/metc/cntinfo/cntaddr/state" />
+						<xsl:text disable-output-escaping="yes">&amp;</xsl:text>nbsp;
+						<xsl:value-of select="metadata/metainfo/metc/cntinfo/cntaddr/postal" /> <br/>
+						Phone: <xsl:value-of select="metadata/metainfo/metc/cntinfo/cntvoice" /> <br/>
+						<xsl:if test="metadata/metainfo/metc/cntinfo/cntfax[. != '']">
+						Fax: <xsl:value-of select="metadata/metainfo/metc/cntinfo/cntfax" /> <br/>
+						</xsl:if>
+						Email: <A href="mailto:{metadata/metainfo/metc/cntinfo/cntemail}">
+						<xsl:value-of select="metadata/metainfo/metc/cntinfo/cntemail"/>
+						</A>
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Metadata Standard Name:
+					</span>
+					<span>
+						<xsl:value-of select="metadata/metainfo/metstdn" />
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Metadata Standard Version:
+					</span>
+					<span>
+						<xsl:value-of select="metadata/metainfo/metstdv" />
+					</span>
+				</div>
+				<br />
+				<div class="mgmgel">
+					<span>
+						Metadata Standard Online Linkage:
+					</span>
+					<span>
+						<A TARGET="viewer">
 								<xsl:attribute name="HREF" >
 									<xsl:value-of select="metadata/metainfo/metextns/onlink" />
 								</xsl:attribute>
 								<xsl:value-of select="metadata/metainfo/metextns/onlink" />
 							</A>
-						</td>
-					</tr>
-
-				</table>
-
+					</span>
+				</div>
+				<br />
+				<!--End of sections of regular MME style HTML formatting -->
 				<p/>
 				<hr/>
-				<font size = "2"/> This page last updated:
+				<div class="smallish"> This page last updated:
 				<xsl:call-template name="FormatDate">
 					<xsl:with-param name="date" select="metadata/metainfo/metd"/>
 				</xsl:call-template>
 				<br/> <A HREF="#Top"> Go back to top</A><p/>
+				</div>
 
-
-
-			</font>
-
-
-
-		</div>
+	</div>
+	</font>
+	</body>
+	</html>
 	</xsl:template>
 
 	<xsl:template name="MGMG_styles">
