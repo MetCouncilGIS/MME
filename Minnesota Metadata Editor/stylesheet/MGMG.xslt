@@ -918,6 +918,7 @@
 				<br />
 				<div class="mgmgel">
 					<span>
+						<a name="ordering" />
 						Ordering Instructions:
 					</span>
 					<span>
