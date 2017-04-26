@@ -17,6 +17,7 @@
 	Updated June 2012 Jon Hoekenga, Matt McGuire and Mark Kotz, Met Council and Zeb Thomas, DNR 
     Updated July 2014 Jim Gonsoski, Met Council
 	Updated January 2017 Mike Dolbow, Mitch Schaps, Sally Wakefield, MnGeo. Overhaul of HTML to better meet accessibility standards.
+	Updated April 2017 Mike Dolbow, additional accessibility enhancements.
   -->
 	<xsl:output method="html" encoding="ISO-8859-1" indent="no" standalone="yes" />
 	<xsl:template name="PreserveLineBreaks">
@@ -238,6 +239,10 @@
 					color: #007799;
 					background-color: #C6E6EF;
 				}
+				 a:focus, a:hover {
+				   background-color: #C6E6EF;
+				   text-decoration: none
+				 }
 				h2 {
 					background: #dfdbcf;
 					padding: 0px 0px 0px 10px;
@@ -1031,6 +1036,7 @@
 					<xsl:with-param name="date" select="metadata/metainfo/metd"/>
 				</xsl:call-template>
 				<br/> <A HREF="#Top"> Go back to top</A><p/>
+				<em class="unused">Created with <a href="https://github.com/MetropolitanCouncil/MME">MGMG stylesheet</a> version 2017.04.25.1</em>
 				</div>
 
 	</div>
@@ -1113,4 +1119,5 @@
 		</style>
 	</xsl:template>
 </xsl:stylesheet>
+
 
