@@ -18,6 +18,7 @@
     Updated July 2014 Jim Gonsoski, Met Council
 	Updated January 2017 Mike Dolbow, Mitch Schaps, Sally Wakefield, MnGeo. Overhaul of HTML to better meet accessibility standards.
 	Updated April 2017 Mike Dolbow, additional accessibility enhancements.
+	Updated October 2017 Zeb Thomas, fixed URL line truncation issues introduced by https fix in 2014.
   -->
 	<xsl:output method="html" encoding="ISO-8859-1" indent="no" standalone="yes" />
 	<xsl:template name="PreserveLineBreaks">
@@ -59,12 +60,12 @@
 			</xsl:when>
 			<!-- ===== SPACE AFTER URL: OUTPUT LINK AND PARSE REMAINING == -->
 			<xsl:when test="contains($urlremaining,' ')">
-        <!-- JAG 6/14 Added back in the explicit 'http' prefix to the link per MnGeo request-->
-				<xsl:variable name="url" select="concat('http',substring-before($urlremaining,' '))" />
+				<xsl:variable name="url" select="substring-before($urlremaining,' ')" />
 				<xsl:variable name="remaining" select="substring-after($urlremaining,$url)" />
 				<xsl:call-template name="WriteLink" >
 					<xsl:with-param name="url">
-						<xsl:value-of select="$url"/>
+						<!-- ZDT 10/17 Moved explicit 'http' prefix from url variable declaration to here to prevent truncation issue -->
+						<xsl:value-of select="concat('http',$url)"/>
 					</xsl:with-param>
 				</xsl:call-template>
 				<xsl:if test="$remaining">
@@ -75,12 +76,12 @@
 			</xsl:when>
 			<!-- ===== URL BUT NO SPACE: OUTPUT REST AS LINK ============= -->
 			<xsl:otherwise>
-        <!-- JAG 6/14 Added back in the explicit 'http' prefix to the likn per MnGeo request-->
-				<xsl:variable name="url" select="concat('http',$urlremaining)" />
+				<xsl:variable name="url" select="$urlremaining" />
 				<xsl:variable name="remaining" select="''" />
 				<xsl:call-template name="WriteLink" >
 					<xsl:with-param name="url">
-						<xsl:value-of select="$url"/>
+						<!-- ZDT 10/17 Moved explicit 'http' prefix from url variable declaration to here to prevent truncation issue -->
+						<xsl:value-of select="concat('http',$url)"/>
 					</xsl:with-param>
 				</xsl:call-template>
 			</xsl:otherwise>
@@ -104,12 +105,12 @@
 			</xsl:when>
 			<!-- ===== SPACE AFTER URL: OUTPUT LINK AND PARSE REMAINING == -->
 			<xsl:when test="contains($urlremaining,' ')">
-        <!-- JAG 6/14 Added back in the explicit 'ftp://' prefix per MnGeo request-->
-				<xsl:variable name="url" select="concat('ftp://',substring-before($urlremaining,' '))" />
+				<xsl:variable name="url" select="substring-before($urlremaining,' ')" />
 				<xsl:variable name="remaining" select="substring-after($urlremaining,$url)" />
 				<xsl:call-template name="WriteLink" >
 					<xsl:with-param name="url">
-						<xsl:value-of select="$url"/>
+						<!-- ZDT 10/17 Moved explicit 'ftp://' prefix from url variable declaration to here to prevent truncation issue -->
+						<xsl:value-of select="concat('ftp://',$url)"/>
 					</xsl:with-param>
 				</xsl:call-template>
 				<xsl:if test="$remaining">
@@ -120,12 +121,12 @@
 			</xsl:when>
 			<!-- ===== URL BUT NO SPACE: OUTPUT REST AS LINK ============= -->
 			<xsl:otherwise>
-        <!-- JAG 6/14 Added back in the explicit 'ftp://' prefix per MnGeo request-->
-				<xsl:variable name="url" select="concat('ftp://',$urlremaining)" />
+				<xsl:variable name="url" select="$urlremaining" />
 				<xsl:variable name="remaining" select="''" />
 				<xsl:call-template name="WriteLink" >
 					<xsl:with-param name="url">
-						<xsl:value-of select="$url"/>
+						<!-- ZDT 10/17 Moved explicit 'ftp://' prefix from url variable declaration to here to prevent truncation issue -->
+						<xsl:value-of select="concat('ftp://',$url)"/>
 					</xsl:with-param>
 				</xsl:call-template>
 			</xsl:otherwise>
